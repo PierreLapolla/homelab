@@ -8,14 +8,14 @@ PROJECT_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
 
 # Run dependencies.yml to install basic dependencies
 echo "Running dependencies playbook..."
-ansible-playbook "$PROJECT_ROOT/ansible/playbooks/dependencies.yml" || { echo "Failed to run dependencies playbook"; exit 1; }
+ansible-playbook -i "$PROJECT_ROOT/ansible/inventory/hosts.ini" "$PROJECT_ROOT/ansible/playbooks/dependencies.yml" || { echo "Failed to run dependencies playbook"; exit 1; }
 
 # Run k3s.yml to install K3s
 echo "Running K3s playbook..."
-ansible-playbook "$PROJECT_ROOT/ansible/playbooks/k3s.yml" || { echo "Failed to run K3s playbook"; exit 1; }
+ansible-playbook -i "$PROJECT_ROOT/ansible/inventory/hosts.ini" "$PROJECT_ROOT/ansible/playbooks/k3s.yml" || { echo "Failed to run K3s playbook"; exit 1; }
 
 # Run helm.yml to install Helm
 echo "Running Helm playbook..."
-ansible-playbook "$PROJECT_ROOT/ansible/playbooks/helm.yml" || { echo "Failed to run Helm playbook"; exit 1; }
+ansible-playbook -i "$PROJECT_ROOT/ansible/inventory/hosts.ini" "$PROJECT_ROOT/ansible/playbooks/helm.yml" || { echo "Failed to run Helm playbook"; exit 1; }
 
 echo "All playbooks executed successfully!"
