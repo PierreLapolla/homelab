@@ -11,16 +11,6 @@
 
     - name: Copy Kubeconfig to home directory
       shell: |
-        mkdir -p /home/{{ ansible_user }}/.kube
-        sudo cp /etc/rancher/k3s/k3s.yaml /home/{{ ansible_user }}/.kube/config
-        sudo chown $(id -u):$(id -g) /home/{{ ansible_user }}/.kube/config
-
-    - name: Verify K3s is running
-      command: systemctl is-active k3s
-      register: k3s_status
-      until: k3s_status.stdout == "active"
-      retries: 5
-      delay: 10
-
-    - name: Display Kubernetes Nodes
-      command: kubectl get nodes
+        mkdir -p {{ ansible_env.HOME }}/.kube
+        sudo cp /etc/rancher/k3s/k3s.yaml {{ ansible_env.HOME }}/.kube/config
+        sudo chown $(id -u):$(id -g) {{ ansible_env.HOME }}/.kube/config
