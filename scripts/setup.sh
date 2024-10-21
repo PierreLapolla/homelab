@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Set the ANSIBLE_CONFIG environment variable to point to ansible.cfg in the ansible directory
+export ANSIBLE_CONFIG=$(pwd)/ansible/ansible.cfg
+
 # Update system packages
 echo "Updating system packages..."
 sudo apt-get update -y
