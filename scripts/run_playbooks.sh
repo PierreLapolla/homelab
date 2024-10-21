@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Run git_check.sh to ensure Git is installed
+echo "Running Git check script..."
+bash scripts/git_check.sh
+
 # Get the directory where the script is located
 SCRIPT_DIR=$(dirname "$0")
 
