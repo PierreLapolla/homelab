@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Add Grafana Helm repository (if not already added)
+      shell: helm repo add grafana https://grafana.github.io/helm-charts
+      args:
+        executable: /bin/bash
+      ignore_errors: yes
+
+    - name: Update Helm repositories
+      shell: helm repo update
+      args:
+        executable: /bin/bash
+
+    - name: Install Grafana using Helm
+      shell: |
+        helm install grafana grafana/grafana \
+        --namespace monitoring \
+        --values {{ playbook_dir }}/../k8s/helm/values-grafana.yml
+      args:
+        executable: /bin/bash

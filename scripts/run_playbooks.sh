@@ -18,4 +18,12 @@ ansible-playbook -i "$PROJECT_ROOT/ansible/inventory/hosts.ini" "$PROJECT_ROOT/a
 echo "Running Helm playbook..."
 ansible-playbook -i "$PROJECT_ROOT/ansible/inventory/hosts.ini" "$PROJECT_ROOT/ansible/playbooks/helm.yml" || { echo "Failed to run Helm playbook"; exit 1; }
 
+# Run prometheus.yml to install Prometheus
+echo "Running Prometheus playbook..."
+ansible-playbook -i "$PROJECT_ROOT/ansible/inventory/hosts.ini" "$PROJECT_ROOT/ansible/playbooks/prometheus.yml" || { echo "Failed to run Prometheus playbook"; exit 1; }
+
+# Run grafana.yml to install Grafana
+echo "Running Grafana playbook..."
+ansible-playbook -i "$PROJECT_ROOT/ansible/inventory/hosts.ini" "$PROJECT_ROOT/ansible/playbooks/grafana.yml" || { echo "Failed to run Grafana playbook"; exit 1; }
+
 echo "All playbooks executed successfully!"
