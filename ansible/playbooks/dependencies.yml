@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Install required system dependencies
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - curl
+        - apt-transport-https
+        - ca-certificates
+        - sudo
