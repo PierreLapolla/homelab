@@ -7,7 +7,7 @@ sudo apt-get upgrade -y
 
 # Install required dependencies
 echo "Installing required dependencies..."
-sudo apt-get install -y python3-pip python3-dev libffi-dev libssl-dev git software-properties-common
+sudo apt-get install -y python3-pip python3-dev libffi-dev libssl-dev software-properties-common
 
 # Add Ansible PPA and install Ansible
 echo "Adding Ansible PPA and installing Ansible..."

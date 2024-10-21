@@ -1,8 +1,11 @@
 #!/bin/bash
 
+# Run git_install.sh to ensure Git is installed
+bash scripts/git_install.sh
+
 # Define your GitHub repository details
 USERNAME="PierreLapolla"      # Replace with your GitHub username
-REPO_NAME="homelab" # Replace with your repository name
+REPO_NAME="homelab"           # Replace with your repository name
 REPO_URL="https://github.com/${USERNAME}/${REPO_NAME}.git"
 
 # Get the current working directory
@@ -28,19 +31,6 @@ fi
 echo "Running setup script..."
 bash scripts/setup.sh
 
-# Run the playbooks to install dependencies, K3s, and Helm
-# Ensure playbooks are run from the correct directory
-
-# Run dependencies.yml to install basic dependencies
-echo "Running dependencies playbook..."
-ansible-playbook playbooks/dependencies.yml || { echo "Failed to run dependencies playbook"; exit 1; }
-
-# Run k3s.yml to install K3s
-echo "Running K3s playbook..."
-ansible-playbook playbooks/k3s.yml || { echo "Failed to run K3s playbook"; exit 1; }
-
-# Run helm.yml to install Helm
-echo "Running Helm playbook..."
-ansible-playbook playbooks/helm.yml || { echo "Failed to run Helm playbook"; exit 1; }
-
-echo "All playbooks executed successfully!"
+# Run the playbooks to install
+echo "Running Ansible playbooks..."
+bash scripts/run_playbooks.sh
