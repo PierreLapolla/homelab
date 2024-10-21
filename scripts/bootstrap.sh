@@ -23,12 +23,12 @@ bash scripts/setup.sh
 
 # Run dependencies.yml to install basic dependencies
 echo "Running dependencies playbook..."
-ansible-playbook playbooks/dependencies.yml
+ansible-playbook ansible/playbooks/dependencies.yml
 
 # Run k3s.yml to install K3s
 echo "Running K3s playbook..."
-ansible-playbook playbooks/k3s.yml
+ansible-playbook ansible/playbooks/k3s.yml
 
 # Run helm.yml to install Helm
 echo "Running Helm playbook..."
-ansible-playbook playbooks/helm.yml
+ansible-playbook ansible/playbooks/helm.yml
