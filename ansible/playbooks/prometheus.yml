@@ -18,6 +18,6 @@
       shell: |
         helm install prometheus prometheus-community/prometheus \
         --namespace monitoring --create-namespace \
-        --values {{ playbook_dir }}/../k8s/helm/values-prometheus.yml
+        --values {{ playbook_dir }}/../../k8s/helm/values-prometheus.yml
       args:
         executable: /bin/bash

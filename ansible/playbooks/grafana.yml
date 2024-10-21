@@ -18,6 +18,6 @@
       shell: |
         helm install grafana grafana/grafana \
         --namespace monitoring \
-        --values {{ playbook_dir }}/../k8s/helm/values-grafana.yml
+        --values {{ playbook_dir }}/../../k8s/helm/values-grafana.yml
       args:
         executable: /bin/bash
