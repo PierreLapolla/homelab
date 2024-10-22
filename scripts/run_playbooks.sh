@@ -6,22 +6,9 @@ SCRIPT_DIR=$(dirname "$0")
 # Navigate to the root directory of your project
 PROJECT_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
 
-# Deleting custom namespaces for a complete redeployment from scratch
-echo "Deleting custom namespaces to clean up all old resources..."
-
-# Delete monitoring namespace (Prometheus and Grafana)
-kubectl delete namespace monitoring --ignore-not-found
-
-# Delete default namespace
-kubectl delete namespace default --ignore-not-found
-
-# Wait for the namespaces to be fully deleted before proceeding
-for namespace in default monitoring; do
-    while kubectl get namespace $namespace 2>/dev/null; do
-        echo "Waiting for the $namespace namespace to be fully deleted..."
-        sleep 5
-    done
-done
+# Delete all k8s resources
+echo "Deleting all k8s resources..."
+kubectl delete all --all
 
 # Run dependencies.yml to install basic dependencies
 echo "Running dependencies playbook..."
