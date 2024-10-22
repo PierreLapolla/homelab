@@ -6,10 +6,6 @@ SCRIPT_DIR=$(dirname "$0")
 # Navigate to the root directory of your project
 PROJECT_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
 
-# Delete all k8s resources
-echo "Deleting all k8s resources..."
-kubectl delete all --all
-
 # Run dependencies.yml to install basic dependencies
 echo "Running dependencies playbook..."
 ansible-playbook -i "$PROJECT_ROOT/ansible/inventory/hosts.ini" "$PROJECT_ROOT/ansible/playbooks/dependencies.yml" || { echo "Failed to run dependencies playbook"; exit 1; }
