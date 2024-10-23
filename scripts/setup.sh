@@ -32,6 +32,10 @@ else
     # Verify Ansible installation
     echo "Ansible version:"
     ansible --version
+
+    # Install Ansible collections from requirements.yml
+    echo "Installing required Ansible collections..."
+    ansible-galaxy collection install -r ansible/requirements.yml || { echo "Failed to install required collections"; exit 1; }
 fi
 
 echo "Ansible installation complete."
