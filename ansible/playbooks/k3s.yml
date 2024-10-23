@@ -3,15 +3,14 @@
   become: yes
 
   tasks:
-    - name: Install K3s with Kubeconfig write mode
-      shell: |
-        curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--write-kubeconfig-mode 644" sh -
-      args:
-        executable: /bin/bash
+    - name: Install K3s
+      xanmanning.k3s:
+        k3s_version: 'v1.21.1+k3s1'
 
-    - name: Copy Kubeconfig to home directory
-      shell: |
-        mkdir -p {{ ansible_env.HOME }}/.kube
-        cp /etc/rancher/k3s/k3s.yaml {{ ansible_env.HOME }}/.kube/config
-        sudo chown $(id -u):$(id -g) {{ ansible_env.HOME }}/.kube/config
-
+    - name: Copy kubeconfig to home directory
+      copy:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: "{{ ansible_env.HOME }}/.kube/config"
+        owner: "{{ ansible_env.USER }}"
+        group: "{{ ansible_env.USER }}"
+        mode: '0644'

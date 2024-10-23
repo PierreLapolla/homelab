@@ -4,20 +4,16 @@
 
   tasks:
     - name: Add Grafana Helm repository (if not already added)
-      shell: helm repo add grafana https://grafana.github.io/helm-charts
-      args:
-        executable: /bin/bash
-      ignore_errors: yes
+      community.kubernetes.helm_repository:
+        name: grafana
+        repo_url: https://grafana.github.io/helm-charts
 
     - name: Update Helm repositories
-      shell: helm repo update
-      args:
-        executable: /bin/bash
+      community.kubernetes.helm_repository_update:
 
     - name: Install Grafana using Helm
-      shell: |
-        helm install grafana grafana/grafana \
-        --namespace monitoring \
-        --values {{ playbook_dir }}/../../k8s/helm/values-grafana.yml
-      args:
-        executable: /bin/bash
+      community.kubernetes.helm:
+        name: grafana
+        chart_ref: grafana/grafana
+        namespace: monitoring
+        values_file: "{{ playbook_dir }}/../../k8s/helm/values-grafana.yml"
