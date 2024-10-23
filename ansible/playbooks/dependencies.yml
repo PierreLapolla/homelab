@@ -7,7 +7,6 @@
       apt:
         name: "{{ item }}"
         state: present
-        timeout: 120
       loop:
         - curl
         - apt-transport-https
