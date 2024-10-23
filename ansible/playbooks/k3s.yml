@@ -1,18 +1,24 @@
 ---
 - hosts: all
-  become: yes
+  become: yes  # Ensure playbook is executed with elevated privileges
 
   roles:
     - role: xanmanning.k3s
       vars:
-        k3s_version: 'v1.21.1+k3s1'
+        k3s_version: 'v1.30.5+k3s1'
 
   tasks:
-    - name: Copy kubeconfig to home directory
-      become: yes
-      become_user: root
-      copy:
+    - name: Fetch kubeconfig from the remote machine
+      become: yes  # Use sudo to access the file
+      fetch:
         src: /etc/rancher/k3s/k3s.yaml
+        dest: /tmp/k3s.yaml  # Temporarily store the file in /tmp
+        flat: yes
+
+    - name: Copy kubeconfig to home directory
+      become: no  # No need for sudo here
+      copy:
+        src: /tmp/k3s.yaml
         dest: "{{ ansible_env.HOME }}/.kube/config"
         owner: "{{ ansible_env.USER }}"
         group: "{{ ansible_env.USER }}"
