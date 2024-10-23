@@ -3,11 +3,7 @@
   become: yes
 
   tasks:
-    - name: Gather information about installed packages
-      package_facts:
-        manager: apt
-
-    - name: Install required packages if not present
+    - name: Install required packages
       apt:
         name: "{{ item }}"
         state: present
@@ -16,7 +12,6 @@
         - apt-transport-https
         - ca-certificates
         - software-properties-common
-      when: "{{ item }} not in ansible_facts.packages"
 
     - name: Add Docker GPG key
       apt_key:
@@ -32,8 +27,7 @@
       apt:
         update_cache: yes
 
-    - name: Install Docker if not present
+    - name: Install Docker
       apt:
         name: docker-ce
         state: present
-      when: "'docker-ce' not in ansible_facts.packages"
