@@ -10,6 +10,7 @@
   tasks:
     - name: Copy kubeconfig to home directory
       become: yes
+      become_user: root
       copy:
         src: /etc/rancher/k3s/k3s.yaml
         dest: "{{ ansible_env.HOME }}/.kube/config"
