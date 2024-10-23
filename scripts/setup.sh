@@ -32,10 +32,10 @@ else
     # Verify Ansible installation
     echo "Ansible version:"
     ansible --version
-
-    # Install Ansible roles from requirements.yml
-    echo "Installing required Ansible roles..."
-    ansible-galaxy role install -r ansible/requirements.yml || { echo "Failed to install required roles"; exit 1; }
 fi
 
-echo "Ansible installation complete."
+# Install Ansible collections and roles from requirements.yml
+echo "Installing required Ansible collections and roles..."
+ansible-galaxy install -r ansible/requirements.yml || { echo "Failed to install required collections and roles"; exit 1; }
+
+echo "Ansible setup and collection/role installation complete."

@@ -1,4 +1,7 @@
 ---
+collections:
+  - name: community.kubernetes
+
 roles:
   - name: xanmanning.k3s
     version: "v3.4.4"
