@@ -3,6 +3,12 @@
   become: yes
 
   tasks:
+    - name: Install Helm (if not already installed)
+      apt:
+        name: "helm"
+        state: present
+      become: yes
+
     - name: Add Helm repository for stable charts
       kubernetes.core.helm_repository:
         name: stable
