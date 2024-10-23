@@ -2,11 +2,12 @@
 - hosts: all
   become: yes
 
-  tasks:
-    - name: Install K3s
-      xanmanning.k3s:
+  roles:
+    - role: xanmanning.k3s
+      vars:
         k3s_version: 'v1.21.1+k3s1'
 
+  tasks:
     - name: Copy kubeconfig to home directory
       copy:
         src: /etc/rancher/k3s/k3s.yaml
