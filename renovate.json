@@ -3,8 +3,8 @@
   "regexManagers": [
     {
       "fileMatch": ["^clusters/my-cluster/helmreleases/.*\\.yaml$"],
-      "matchStrings": ["version:\\s+\"(?<currentValue>[^\"]+)\""],
-      "depNameTemplate": "{{ packageFilePath }}",
+      "matchStrings": ["version:\\s*\"(?<currentValue>[^\"]+)\""],
+      "depNameTemplate": "{{chart}}",
       "datasourceTemplate": "helm",
       "versioningTemplate": "semver"
     }
