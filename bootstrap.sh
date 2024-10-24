@@ -75,18 +75,4 @@ flux bootstrap github \
   --repository=homelab \
   --branch=master \
   --path=clusters/my-cluster \
-  --personal \
-  --timeout=5m
-
-# Creating ssh key if not already exists
-SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
-if [ ! -f "$SSH_KEY_PATH" ]; then
-    echo "Creating SSH key..."
-    ssh-keygen -t ed25519 -C "plapolla9@gmail.com" -f "$SSH_KEY_PATH" -N ""
-else
-    echo "SSH key already exists."
-fi
-
-# Output the SSH public key
-echo "Here is your public SSH key:"
-cat "${SSH_KEY_PATH}.pub"
+  --personal
