@@ -23,10 +23,6 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 echo "Installing Helm..."
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-# Install Git
-echo "Installing Git..."
-sudo apt install git -y
-
 # Bootstrap Flux
 echo "Bootstrapping Flux..."
 flux bootstrap github \
