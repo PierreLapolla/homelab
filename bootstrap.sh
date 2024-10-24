@@ -14,8 +14,8 @@ sudo apt update && sudo apt upgrade -y
 
 # Install K3s if it's not installed
 if ! command_exists k3s; then
-    echo "Installing K3s..."
-    curl -sfL https://get.k3s.io | sh -
+    echo "Installing K3s with write permissions for KUBECONFIG..."
+    curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
 
     # Wait until the K3s service is running before proceeding
     echo "Waiting for K3s to be ready..."
@@ -75,7 +75,8 @@ flux bootstrap github \
   --repository=homelab \
   --branch=master \
   --path=clusters/my-cluster \
-  --personal
+  --personal \
+  --timeout=5m
 
 # Creating ssh key if not already exists
 SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
