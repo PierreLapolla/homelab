@@ -35,13 +35,30 @@ else
 fi
 
 # Ensure KUBECONFIG is set and accessible
-if [ ! -f /etc/rancher/k3s/k3s.yaml ]; then
+KUBECONFIG_SRC="/etc/rancher/k3s/k3s.yaml"
+KUBECONFIG_DEST="$HOME/.kube/config"
+
+# Check if the KUBECONFIG file exists
+if [ ! -f "$KUBECONFIG_SRC" ]; then
     echo "Error: K3s KUBECONFIG file not found."
     exit 1
 fi
 
+# Create .kube directory if it doesn't exist
+mkdir -p "$HOME/.kube"
+
+# Copy KUBECONFIG to a location accessible by the current user
+echo "Copying KUBECONFIG to $HOME/.kube/config..."
+sudo cp "$KUBECONFIG_SRC" "$KUBECONFIG_DEST"
+sudo chown $(id -u):$(id -g) "$KUBECONFIG_DEST"  # Ensure the current user owns the copied file
+
+# Export KUBECONFIG
 echo "Exporting KUBECONFIG..."
-export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+export KUBECONFIG="$KUBECONFIG_DEST"
+
+# Verify the kubectl access
+echo "Verifying kubectl access..."
+kubectl get nodes
 
 # Install Helm if it's not installed
 if ! command_exists helm; then
