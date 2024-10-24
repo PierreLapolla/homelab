@@ -3,29 +3,53 @@
 # Exit the script on any error
 set -e
 
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
 # Update system packages
 echo "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
 
-# Install K3s
-echo "Installing K3s..."
-curl -sfL https://get.k3s.io | sh -
+# Install K3s if it's not installed
+if ! command_exists k3s; then
+    echo "Installing K3s..."
+    curl -sfL https://get.k3s.io | sh -
 
-# Wait for K3s to be ready
-echo "Waiting for K3s to be ready..."
-sleep 60
+    # Wait until the K3s service is running before proceeding
+    echo "Waiting for K3s to be ready..."
+    until sudo k3s kubectl get nodes >/dev/null 2>&1; do
+        sleep 2
+    done
+else
+    echo "K3s is already installed."
+fi
 
-# Install Flux CLI
-echo "Installing Flux CLI..."
-curl -s https://fluxcd.io/install.sh | sudo bash
+# Install Flux CLI if it's not installed
+if ! command_exists flux; then
+    echo "Installing Flux CLI..."
+    curl -s https://fluxcd.io/install.sh | sudo bash
+else
+    echo "Flux CLI is already installed."
+fi
 
-# Export KUBECONFIG with elevated permissions
+# Ensure KUBECONFIG is set and accessible
+if [ ! -f /etc/rancher/k3s/k3s.yaml ]; then
+    echo "Error: K3s KUBECONFIG file not found."
+    exit 1
+fi
+
 echo "Exporting KUBECONFIG..."
-sudo export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
-# Install Helm
-echo "Installing Helm..."
-curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+# Install Helm if it's not installed
+if ! command_exists helm; then
+    echo "Installing Helm..."
+    curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+else
+    echo "Helm is already installed."
+fi
 
 # Bootstrap Flux
 echo "Bootstrapping Flux..."
@@ -36,7 +60,15 @@ flux bootstrap github \
   --path=clusters/my-cluster \
   --personal
 
-# Creating ssh key and print content to console
-echo "Creating SSH key..."
-ssh-keygen -t ed25519 -C "plapolla9@gmail.com"
-cat ~/.ssh/id_ed25519.pub
+# Creating ssh key if not already exists
+SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
+if [ ! -f "$SSH_KEY_PATH" ]; then
+    echo "Creating SSH key..."
+    ssh-keygen -t ed25519 -C "plapolla9@gmail.com" -f "$SSH_KEY_PATH" -N ""
+else
+    echo "SSH key already exists."
+fi
+
+# Output the SSH public key
+echo "Here is your public SSH key:"
+cat "${SSH_KEY_PATH}.pub"
