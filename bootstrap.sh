@@ -22,6 +22,10 @@ if ! command_exists k3s; then
     until sudo k3s kubectl get nodes >/dev/null 2>&1; do
         sleep 2
     done
+
+    # Graceful wait for K3s to initialize resources
+    echo "Giving K3s time to initialize resources (e.g., coredns, metrics-server)..."
+    sleep 60  # Wait for 60 seconds before checking for system pods
 else
     echo "K3s is already installed."
 fi
