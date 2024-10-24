@@ -84,6 +84,15 @@ until kubectl get pods -n kube-system | grep -E " Running|Completed" | wc -l | g
     sleep 5
 done
 
+# Wait for all containers across all namespaces to be ready
+echo "Waiting for all containers to be ready..."
+
+# Loop until all containers across all namespaces are running or completed
+until kubectl get pods --all-namespaces --no-headers | grep -E " Running|Completed" | wc -l | grep -q "$(kubectl get pods --all-namespaces --no-headers | wc -l)"; do
+    echo "Waiting for all containers to be in 'Running' or 'Completed' state..."
+    sleep 5
+done
+
 # Bootstrap Flux
 echo "Bootstrapping Flux..."
 flux bootstrap github \
