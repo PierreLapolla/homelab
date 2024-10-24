@@ -32,7 +32,7 @@ echo "Bootstrapping Flux..."
 flux bootstrap github \
   --owner=PierreLapolla \
   --repository=homelab \
-  --branch=main \
+  --branch=master \
   --path=clusters/my-cluster \
   --personal
 
