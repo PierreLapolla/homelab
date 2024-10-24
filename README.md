@@ -1,0 +1,1 @@
+when running bootstrap.sh, copy the public key content, go to github repo settings to deploy keys and add it

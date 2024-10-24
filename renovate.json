@@ -1,13 +1,12 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  "packageRules": [
+  "extends": ["config:base"],
+  "regexManagers": [
     {
-      "managers": ["helm"],
-      "matchPaths": ["clusters/my-cluster/helmreleases/*.yaml"],
-      "groupName": "Helm chart updates",
-      "commitMessage": "chore: update Helm charts"
+      "fileMatch": ["^clusters/my-cluster/helmreleases/.*\\.yaml$"],
+      "matchStrings": ["version: \"(?<currentValue>.*?)\""],
+      "depNameTemplate": "{{ packageFilePath }}",
+      "datasourceTemplate": "helm",
+      "versioningTemplate": "semver"
     }
   ]
 }

@@ -9,7 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Validate Kustomize
+
+      - name: Install Helm
         run: |
-          sudo apt-get install -y kustomize
-          kustomize build clusters/my-cluster/
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+      - name: Validate Helm Releases
+        run: |
+          helm lint clusters/my-cluster/helmreleases/*.yaml
