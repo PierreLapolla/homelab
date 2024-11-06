@@ -20,7 +20,7 @@ if ! command_exists k3s; then
     # Wait until the K3s service is running before proceeding
     echo "Waiting for K3s to be ready..."
     until sudo k3s kubectl get nodes >/dev/null 2>&1; do
-        sleep 2
+        sleep 5
     done
 
     # Graceful wait for K3s to initialize resources
