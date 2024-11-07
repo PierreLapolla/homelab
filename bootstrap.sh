@@ -17,6 +17,14 @@ export GITHUB_TOKEN
 echo "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
 
+# Install curl if it's not installed
+if ! command_exists curl; then
+    echo "Installing curl..."
+    sudo apt install -y curl
+else
+    echo "curl is already installed."
+fi
+
 # Install K3s if it's not installed
 if ! command_exists k3s; then
     echo "Installing K3s with write permissions for KUBECONFIG..."
