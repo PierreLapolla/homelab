@@ -27,3 +27,9 @@ spec:
     service:
       type: NodePort
       port: 3000
+    grafana:
+      auth:
+        disable_login_form: true
+        anonymous:
+          enabled: true
+          org_role: Admin  # Role assigned to anonymous users; options are Viewer, Editor, Admin
