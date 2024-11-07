@@ -11,6 +11,7 @@ command_exists() {
 # Ask user input for github token
 echo "Please enter your GitHub token:"
 read -r GITHUB_TOKEN
+export GITHUB_TOKEN
 
 # Update system packages
 echo "Updating system packages..."
@@ -101,15 +102,6 @@ until kubectl get pods --all-namespaces --no-headers | grep -E " Running|Complet
     sleep 5
 done
 
-# Creating kubectl secret for GitHub token
-echo "Creating kubectl secret for GitHub token..."
-kubectl create namespace flux-system
-kubectl create secret generic flux-system \
-  --namespace flux-system \
-  --from-literal=username=PierreLapolla \
-  --from-literal=password="$GITHUB_TOKEN"
-
-
 # Bootstrap Flux
 echo "Bootstrapping Flux..."
 flux bootstrap github \
@@ -118,3 +110,5 @@ flux bootstrap github \
   --branch=master \
   --path=clusters/my-cluster \
   --personal=true
+
+unset GITHUB_TOKEN
