@@ -12,6 +12,10 @@ command_exists() {
 echo "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
 
+# Ask user input for github token
+echo "Please enter your GitHub token:"
+read -r GITHUB_TOKEN
+
 # Install K3s if it's not installed
 if ! command_exists k3s; then
     echo "Installing K3s with write permissions for KUBECONFIG..."
@@ -97,6 +101,14 @@ until kubectl get pods --all-namespaces --no-headers | grep -E " Running|Complet
     sleep 5
 done
 
+# Creating kubectl secret for GitHub token
+echo "Creating kubectl secret for GitHub token..."
+kubectl create secret generic flux-system \
+  --namespace flux-system \
+  --from-literal=username=PierreLapolla \
+  --from-literal=password="$GITHUB_TOKEN"
+
+
 # Bootstrap Flux
 echo "Bootstrapping Flux..."
 flux bootstrap github \
@@ -104,4 +116,4 @@ flux bootstrap github \
   --repository=homelab \
   --branch=master \
   --path=clusters/my-cluster \
-  --personal
+  --personal=true
