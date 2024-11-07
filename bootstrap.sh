@@ -79,26 +79,22 @@ fi
 
 # Wait for Kubernetes to be fully ready before bootstrapping Flux
 echo "Checking if Kubernetes is ready..."
-
-# Wait until all nodes are in "Ready" state
 until kubectl get nodes | grep -E " Ready"; do
-    echo "Waiting for all nodes to be in 'Ready' state..."
+    echo "Waiting for all nodes to be ready..."
     sleep 5
 done
 
 # Wait until core system pods are running (e.g., kube-system pods)
 echo "Waiting for core Kubernetes components to be ready..."
 until kubectl get pods -n kube-system | grep -E " Running|Completed" | wc -l | grep -q "$(kubectl get pods -n kube-system --no-headers | wc -l)"; do
-    echo "Waiting for all kube-system pods to be ready..."
+    echo "Waiting for core Kubernetes components to be ready..."
     sleep 5
 done
 
 # Wait for all containers across all namespaces to be ready
 echo "Waiting for all containers to be ready..."
-
-# Loop until all containers across all namespaces are running or completed
 until kubectl get pods --all-namespaces --no-headers | grep -E " Running|Completed" | wc -l | grep -q "$(kubectl get pods --all-namespaces --no-headers | wc -l)"; do
-    echo "Waiting for all containers to be in 'Running' or 'Completed' state..."
+    echo "Waiting for all containers to be ready..."
     sleep 5
 done
 
