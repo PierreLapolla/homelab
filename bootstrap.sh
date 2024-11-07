@@ -8,13 +8,13 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-# Update system packages
-echo "Updating system packages..."
-sudo apt update && sudo apt upgrade -y
-
 # Ask user input for github token
 echo "Please enter your GitHub token:"
 read -r GITHUB_TOKEN
+
+# Update system packages
+echo "Updating system packages..."
+sudo apt update && sudo apt upgrade -y
 
 # Install K3s if it's not installed
 if ! command_exists k3s; then
@@ -103,6 +103,7 @@ done
 
 # Creating kubectl secret for GitHub token
 echo "Creating kubectl secret for GitHub token..."
+kubectl create namespace flux-system
 kubectl create secret generic flux-system \
   --namespace flux-system \
   --from-literal=username=PierreLapolla \
