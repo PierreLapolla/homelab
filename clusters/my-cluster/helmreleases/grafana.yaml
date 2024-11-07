@@ -29,8 +29,5 @@ spec:
       port: 3000
       nodePort: 30000
     grafana:
-      auth:
-        disable_login_form: true
-        anonymous:
-          enabled: true
-          org_role: Editor  # Role assigned to anonymous users; options are Viewer, Editor, Admin
+      adminUser: "pedro"             # Set the admin username here
+      adminPassword: "1234" # Set the admin password here
