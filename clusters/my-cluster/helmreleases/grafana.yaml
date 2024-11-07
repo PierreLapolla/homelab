@@ -28,6 +28,5 @@ spec:
       type: NodePort
       port: 3000
       nodePort: 32000
-    grafana:
-      adminUser: "pedro"
-      adminPassword: "1234"
+    adminUser: "pedro"
+    adminPassword: "1234"
