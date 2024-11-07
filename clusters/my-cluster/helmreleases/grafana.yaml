@@ -26,3 +26,4 @@ spec:
       size: 10Gi
     service:
       type: NodePort
+      port: 3000
