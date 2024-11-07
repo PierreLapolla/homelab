@@ -28,13 +28,10 @@ spec:
       type: NodePort
       port: 3000
       nodePort: 32000
-    grafana:
-      grafana.ini:
-        auth:
-          disable_login_form: true
-          anonymous:
-            enabled: true
-            org_role: Viewer
-        security:
-          admin_user: "pedro"
-          admin_password: "1234"
+    adminUser: "pedro"
+    adminPassword: "pedro"
+    grafana.ini:
+      auth:
+        disable_login_form: false
+        anonymous:
+          enabled: false
