@@ -115,13 +115,6 @@ flux bootstrap github \
   --path=clusters/my-cluster \
   --personal=true
 
-# Port-forward Grafana on port 3000 after verification
-echo "Waiting for Grafana service to be ready..."
-until kubectl get svc -n grafana | grep grafana >/dev/null 2>&1; do
-    sleep 5
-done
-echo "Port-forwarding Grafana service on port 3000..."
-kubectl port-forward -n grafana svc/grafana 3000:3000 &
-echo "Grafana is now accessible at http://localhost:3000"
-
 unset GITHUB_TOKEN
+
+./info.sh

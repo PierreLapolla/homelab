@@ -27,6 +27,7 @@ spec:
     service:
       type: NodePort
       port: 3000
+      nodePort: 30000
     grafana:
       auth:
         disable_login_form: true
