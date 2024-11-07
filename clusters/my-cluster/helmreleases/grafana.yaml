@@ -33,4 +33,4 @@ spec:
         disable_login_form: true
         anonymous:
           enabled: true
-          org_role: Admin  # Role assigned to anonymous users; options are Viewer, Editor, Admin
+          org_role: Editor  # Role assigned to anonymous users; options are Viewer, Editor, Admin

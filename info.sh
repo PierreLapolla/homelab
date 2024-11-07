@@ -4,7 +4,7 @@
 NODE_IP=$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}')
 
 # Check if Grafana is installed and accessible
-GRAFANA_PORT=32000
+GRAFANA_PORT=30000
 GRAFANA_NAMESPACE="grafana"
 
 # Verify if Grafana service exists
