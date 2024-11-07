@@ -29,5 +29,5 @@ spec:
       port: 3000
       nodePort: 30000
     grafana:
-      adminUser: "pedro"             # Set the admin username here
-      adminPassword: "1234" # Set the admin password here
+      adminUser: "pedro"
+      adminPassword: "1234"
