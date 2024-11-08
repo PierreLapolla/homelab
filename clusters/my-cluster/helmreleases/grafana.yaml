@@ -28,15 +28,10 @@ spec:
       type: NodePort
       port: 3000
       nodePort: 32000
-
-    # Set admin credentials
-    adminUser: "pedro"             # Set the desired admin username
-    adminPassword: "1234"  # Set the desired admin password (replace 'your_password')
-
-    # Enable anonymous access and set default role to Viewer
+    adminUser: "pedro"
+    adminPassword: "pedro1234"
     grafana:
       auth:
-        disable_login_form: false   # Keep login form accessible for admin login
         anonymous:
           enabled: true
-          org_role: Viewer          # Role assigned to anonymous users (Viewer for read-only)
+          org_role: Viewer
