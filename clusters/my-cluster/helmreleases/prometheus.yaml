@@ -17,7 +17,6 @@ spec:
     server:
       service:
         type: NodePort
-        port: 30090
     retention: 7d
     resources:
       requests:

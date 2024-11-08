@@ -38,7 +38,7 @@ spec:
           - name: Prometheus
             type: prometheus
             access: proxy
-            url: http://{{ .Release.Name }}-prometheus-server.{{ .Release.Namespace }}.svc.cluster.local:30090
+            url: http://192.168.122.118:30080
             isDefault: true
             editable: true
 
