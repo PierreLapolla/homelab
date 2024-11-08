@@ -27,11 +27,7 @@ spec:
       enabled: true
       size: 10Gi
     grafana.ini:
-      auth:
-        disable_login_form: false     # Keep the login form enabled for admin access
-        allow_anonymous: true         # Enable anonymous access
-      users:
-        default_admin_user: admin     # Set the default admin username (can be changed as needed)
-        default_admin_password: admin # Set the default admin password (change for security)
-        auto_assign_org: true         # Automatically assigns anonymous users to the default organization
-        auto_assign_org_role: Viewer  # Sets the role for anonymous users (Viewer access only)
+      auth.anonymous:
+        enabled: true
+        org_name: Main Org.
+        org_role: Viewer
