@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: pihole
-      version: "2.26.1"
+      version: "*"
       sourceRef:
         kind: HelmRepository
         name: pihole
@@ -21,11 +21,22 @@ spec:
     service:
       type: NodePort
       web:
+        enabled: true
         port: 80
-        nodePort: 32001
+        nodePort: 32001  # NodePort for Pi-hole web UI
       dns:
-        port: 53
-        nodePort: 32002
+        tcp:
+          enabled: true
+          port: 53
+          nodePort: 32002  # NodePort for DNS over TCP
+        udp:
+          enabled: true
+          port: 53
+          nodePort: 32003  # NodePort for DNS over UDP
+      dhcp:
+        enabled: true
+        port: 67
+        nodePort: 32004  # NodePort for DHCP (optional, only if using Pi-hole for DHCP)
     pihole:
       TZ: "Europe/Paris"
       WEBPASSWORD: "Pedro1234"
