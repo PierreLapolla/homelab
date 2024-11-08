@@ -5,7 +5,7 @@ NODE_IP=$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="
 
 # Constants for Prometheus
 PROMETHEUS_NAMESPACE="prometheus"
-PROMETHEUS_PORT=$(kubectl get svc -n "$PROMETHEUS_NAMESPACE" prometheus-k8s -o jsonpath='{.spec.ports[0].nodePort}')
+PROMETHEUS_PORT=$(kubectl get svc -n "$PROMETHEUS_NAMESPACE" prometheus-server -o jsonpath='{.spec.ports[0].nodePort}')
 
 # Constants for Grafana
 GRAFANA_NAMESPACE="grafana"
