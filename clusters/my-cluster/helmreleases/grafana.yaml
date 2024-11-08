@@ -41,4 +41,17 @@ spec:
             url: http://192.168.122.118:30080
             isDefault: true
             editable: true
+    dashboards:
+      default:
+        my-custom-dashboard:
+          json: |
+            # Paste your JSON dashboard here, properly indented.
+            {
+              "dashboard": {
+                "id": null,
+                "title": "My Custom Dashboard",
+                "panels": [ ... ]
+                # Add your full dashboard JSON here
+              }
+            }
 
