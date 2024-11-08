@@ -22,6 +22,7 @@ spec:
       type: NodePort
       web:
         enabled: true
+        type: NodePort
       dns:
         tcp:
           enabled: true
