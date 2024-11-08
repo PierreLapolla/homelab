@@ -16,10 +16,16 @@ spec:
   values:
     serviceWeb:
       type: NodePort
+      port: 82
+      nodePort: 30082
     serviceDns:
       type: NodePort
+      port: 53
+      nodePort: 3053
     serviceDhcp:
       type: NodePort
+      port: 67
+      nodePort: 3067
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
