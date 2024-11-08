@@ -28,3 +28,7 @@ spec:
       type: NodePort
       port: 3000
       nodePort: 32000
+    auth:
+      disable_login_form: true
+    adminUser: "pedro"
+    adminPassword: "1234"
