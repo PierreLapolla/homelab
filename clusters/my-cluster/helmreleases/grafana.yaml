@@ -31,3 +31,6 @@ spec:
         enabled: true
         org_name: Main Org.
         org_role: Viewer
+      security:
+        admin_user: admin
+        admin_password: Pedro1234
