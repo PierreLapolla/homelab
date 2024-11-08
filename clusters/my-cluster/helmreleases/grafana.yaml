@@ -28,3 +28,5 @@ spec:
       type: NodePort
       port: 3000
       nodePort: 32000
+    adminUser: "pedro"
+    adminPassword: "Pedro1234"
