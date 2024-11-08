@@ -1,3 +1,4 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: grafana
@@ -27,13 +28,3 @@ spec:
       type: NodePort
       port: 3000
       nodePort: 32000
-    adminUser: "pedro"
-    adminPassword: "pedro1234"
-    grafana:
-      auth:
-        anonymous:
-          enabled: true
-          org_role: Viewer
-      grafana.ini:
-        users:
-          view_mode: true
