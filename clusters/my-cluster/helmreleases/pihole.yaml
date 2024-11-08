@@ -1,4 +1,4 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: pihole
@@ -18,25 +18,6 @@ spec:
       enabled: true
       accessMode: ReadWriteOnce
       size: 10Gi
-    service:
-      type: NodePort
-      web:
-        enabled: true
-        port: 80
-        nodePort: 32001  # NodePort for Pi-hole web UI
-      dns:
-        tcp:
-          enabled: true
-          port: 53
-          nodePort: 32002  # NodePort for DNS over TCP
-        udp:
-          enabled: true
-          port: 53
-          nodePort: 32003  # NodePort for DNS over UDP
-      dhcp:
-        enabled: true
-        port: 67
-        nodePort: 32004  # NodePort for DHCP (optional, only if using Pi-hole for DHCP)
     pihole:
       TZ: "Europe/Paris"
       WEBPASSWORD: "Pedro1234"
