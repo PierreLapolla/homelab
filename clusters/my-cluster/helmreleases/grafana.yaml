@@ -24,5 +24,7 @@ spec:
     persistence:
       enabled: true
       size: 10Gi
+    service:
+      type: NodePort
     adminUser: "pedro"
     adminPassword: "Pedro1234"

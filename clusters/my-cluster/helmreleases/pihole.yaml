@@ -18,6 +18,17 @@ spec:
       enabled: true
       accessMode: ReadWriteOnce
       size: 10Gi
+    service:
+      type: NodePort
+      web:
+        enabled: true
+      dns:
+        tcp:
+          enabled: true
+        udp:
+          enabled: true
+      dhcp:
+        enabled: true
     pihole:
       TZ: "Europe/Paris"
       WEBPASSWORD: "Pedro1234"

@@ -17,10 +17,9 @@ PIHOLE_DNS_UDP_PORT=$(kubectl get svc -n "$PIHOLE_NAMESPACE" pihole-dns-udp -o j
 PIHOLE_DHCP_PORT=$(kubectl get svc -n "$PIHOLE_NAMESPACE" pihole-dhcp -o jsonpath='{.spec.ports[0].nodePort}')
 
 # Verify if Grafana service exists
-if kubectl get svc -n "$GRAFANA_NAMESPACE" | grep -q "grafana"; then
-  echo "====================================================="
+echo "====================================================="
+if [ -n "$GRAFANA_PORT" ]; then
   echo "Grafana is accessible at: http://$NODE_IP:$GRAFANA_PORT"
-  echo "====================================================="
 else
   echo "Grafana service not found in the '$GRAFANA_NAMESPACE' namespace."
 fi
