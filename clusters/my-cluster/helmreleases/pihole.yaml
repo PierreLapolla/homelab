@@ -18,8 +18,6 @@ spec:
       enabled: true
       accessMode: ReadWriteOnce
       size: 10Gi
-    service:
-      type: NodePort
     pihole:
       TZ: "Europe/Paris"
       WEBPASSWORD: "Pedro1234"
