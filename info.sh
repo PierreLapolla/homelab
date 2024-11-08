@@ -3,6 +3,10 @@
 # Retrieve the Node IP
 NODE_IP=$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}')
 
+# Constants for Prometheus
+PROMETHEUS_NAMESPACE="prometheus"
+PROMETHEUS_PORT=$(kubectl get svc -n "$PROMETHEUS_NAMESPACE" prometheus-k8s -o jsonpath='{.spec.ports[0].nodePort}')
+
 # Constants for Grafana
 GRAFANA_NAMESPACE="grafana"
 GRAFANA_PORT=$(kubectl get svc -n "$GRAFANA_NAMESPACE" grafana -o jsonpath='{.spec.ports[0].nodePort}')
@@ -15,6 +19,14 @@ PIHOLE_WEB_PORT=$(kubectl get svc -n "$PIHOLE_NAMESPACE" pihole-web -o jsonpath=
 PIHOLE_DNS_TCP_PORT=$(kubectl get svc -n "$PIHOLE_NAMESPACE" pihole-dns-tcp -o jsonpath='{.spec.ports[0].nodePort}')
 PIHOLE_DNS_UDP_PORT=$(kubectl get svc -n "$PIHOLE_NAMESPACE" pihole-dns-udp -o jsonpath='{.spec.ports[0].nodePort}')
 PIHOLE_DHCP_PORT=$(kubectl get svc -n "$PIHOLE_NAMESPACE" pihole-dhcp -o jsonpath='{.spec.ports[0].nodePort}')
+
+# Verify if Prometheus service exists
+echo "====================================================="
+if [ -n "$PROMETHEUS_PORT" ]; then
+  echo "Prometheus is accessible at: http://$NODE_IP:$PROMETHEUS_PORT"
+else
+  echo "Prometheus service not found in the '$PROMETHEUS_NAMESPACE' namespace."
+fi
 
 # Verify if Grafana service exists
 echo "====================================================="

@@ -20,16 +20,6 @@ spec:
       size: 10Gi
     service:
       type: NodePort
-      web:
-        enabled: true
-        type: NodePort
-      dns:
-        tcp:
-          enabled: true
-        udp:
-          enabled: true
-      dhcp:
-        enabled: true
     pihole:
       TZ: "Europe/Paris"
       WEBPASSWORD: "Pedro1234"
