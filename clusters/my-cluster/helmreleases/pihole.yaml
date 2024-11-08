@@ -14,6 +14,11 @@ spec:
         name: pihole
         namespace: flux-system
   values:
+    service:
+      type: NodePort
+      web:
+        enabled: true
+        type: NodePort
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
