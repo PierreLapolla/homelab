@@ -41,35 +41,3 @@ spec:
             url: http://192.168.122.118:30080
             isDefault: true
             editable: true
-    dashboards:
-      default:
-        main-dashboard:
-          json: |
-            {
-              "id": null,
-              "uid": "main-dashboard",
-              "title": "Main Dashboard",
-              "tags": [],
-              "timezone": "browser",
-              "schemaVersion": 16,
-              "version": 0,
-              "refresh": "5s",
-              "panels": [
-                {
-                  "type": "graph",
-                  "title": "Example Panel",
-                  "targets": [
-                    {
-                      "expr": "up",
-                      "format": "time_series"
-                    }
-                  ],
-                  "gridPos": {
-                    "x": 0,
-                    "y": 0,
-                    "w": 12,
-                    "h": 8
-                  }
-                }
-              ]
-            }
