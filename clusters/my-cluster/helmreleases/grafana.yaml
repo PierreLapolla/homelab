@@ -16,6 +16,11 @@ spec:
   values:
     service:
       type: NodePort
+      ports:
+        - name: service
+          port: 3000
+          targetPort: 3000
+          nodePort: 31000
     resources:
       requests:
         cpu: "100m"
@@ -27,7 +32,8 @@ spec:
       enabled: true
       size: 10Gi
     grafana.ini:
-      auth.anonymous:
+      metrics:
         enabled: true
-        org_name: Main Org.
-        org_role: Admin # Viewer, Editor, Admin
+    podAnnotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "3000"

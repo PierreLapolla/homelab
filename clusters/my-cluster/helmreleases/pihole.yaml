@@ -16,6 +16,11 @@ spec:
   values:
     serviceWeb:
       type: NodePort
+      ports:
+        - name: metrics
+          port: 9617
+          targetPort: 9617
+          nodePort: 30091
     serviceDns:
       type: NodePort
     serviceDhcp:
@@ -26,7 +31,6 @@ spec:
       size: 10Gi
     pihole:
       TZ: "Europe/Paris"
-      WEBPASSWORD: null
     resources:
       requests:
         memory: "500Mi"
@@ -34,3 +38,6 @@ spec:
       limits:
         memory: "1Gi"
         cpu: "500m"
+    podAnnotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "9617"
