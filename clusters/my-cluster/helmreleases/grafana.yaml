@@ -30,7 +30,7 @@ spec:
       auth.anonymous:
         enabled: true
         org_name: Main Org.
-        org_role: Admin
+        org_role: Admin # Viewer, Editor, Admin
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -43,148 +43,33 @@ spec:
             editable: true
     dashboards:
       default:
-        my-custom-dashboard:
+        main-dashboard:
           json: |
-            # Paste your JSON dashboard here, properly indented.
-                      {
-            "annotations": {
-              "list": [
+            {
+              "id": null,
+              "uid": "main-dashboard",
+              "title": "Main Dashboard",
+              "tags": [],
+              "timezone": "browser",
+              "schemaVersion": 16,
+              "version": 0,
+              "refresh": "5s",
+              "panels": [
                 {
-                  "builtIn": 1,
-                  "datasource": {
-                    "type": "grafana",
-                    "uid": "-- Grafana --"
-                  },
-                  "enable": true,
-                  "hide": true,
-                  "iconColor": "rgba(0, 211, 255, 1)",
-                  "name": "Annotations & Alerts",
-                  "type": "dashboard"
+                  "type": "graph",
+                  "title": "Example Panel",
+                  "targets": [
+                    {
+                      "expr": "up",
+                      "format": "time_series"
+                    }
+                  ],
+                  "gridPos": {
+                    "x": 0,
+                    "y": 0,
+                    "w": 12,
+                    "h": 8
+                  }
                 }
               ]
-            },
-            "editable": true,
-            "fiscalYearStartMonth": 0,
-            "graphTooltip": 0,
-            "id": 1,
-            "links": [],
-            "panels": [
-              {
-                "datasource": {
-                  "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
-                },
-                "fieldConfig": {
-                  "defaults": {
-                    "color": {
-                      "mode": "palette-classic"
-                    },
-                    "custom": {
-                      "axisBorderShow": false,
-                      "axisCenteredZero": false,
-                      "axisColorMode": "text",
-                      "axisLabel": "",
-                      "axisPlacement": "auto",
-                      "barAlignment": 0,
-                      "barWidthFactor": 0.6,
-                      "drawStyle": "line",
-                      "fillOpacity": 0,
-                      "gradientMode": "none",
-                      "hideFrom": {
-                        "legend": false,
-                        "tooltip": false,
-                        "viz": false
-                      },
-                      "insertNulls": false,
-                      "lineInterpolation": "linear",
-                      "lineWidth": 1,
-                      "pointSize": 5,
-                      "scaleDistribution": {
-                        "type": "linear"
-                      },
-                      "showPoints": "auto",
-                      "spanNulls": false,
-                      "stacking": {
-                        "group": "A",
-                        "mode": "none"
-                      },
-                      "thresholdsStyle": {
-                        "mode": "off"
-                      }
-                    },
-                    "mappings": [],
-                    "thresholds": {
-                      "mode": "absolute",
-                      "steps": [
-                        {
-                          "color": "green",
-                          "value": null
-                        },
-                        {
-                          "color": "red",
-                          "value": 80
-                        }
-                      ]
-                    }
-                  },
-                  "overrides": []
-                },
-                "gridPos": {
-                  "h": 8,
-                  "w": 12,
-                  "x": 0,
-                  "y": 0
-                },
-                "id": 1,
-                "options": {
-                  "legend": {
-                    "calcs": [],
-                    "displayMode": "list",
-                    "placement": "bottom",
-                    "showLegend": true
-                  },
-                  "tooltip": {
-                    "mode": "single",
-                    "sort": "none"
-                  }
-                },
-                "pluginVersion": "11.3.0",
-                "targets": [
-                  {
-                    "datasource": {
-                      "type": "prometheus",
-                      "uid": "PBFA97CFB590B2093"
-                    },
-                    "disableTextWrap": false,
-                    "editorMode": "builder",
-                    "expr": "apiserver_watch_events_total",
-                    "fullMetaSearch": false,
-                    "includeNullMetadata": true,
-                    "legendFormat": "__auto",
-                    "range": true,
-                    "refId": "A",
-                    "useBackend": false
-                  }
-                ],
-                "title": "Panel Title",
-                "type": "timeseries"
-              }
-            ],
-            "preload": false,
-            "schemaVersion": 40,
-            "tags": [],
-            "templating": {
-              "list": []
-            },
-            "time": {
-              "from": "now-6h",
-              "to": "now"
-            },
-            "timepicker": {},
-            "timezone": "browser",
-            "title": "New dashboard",
-            "uid": "fe3bhlhu4b9c0d",
-            "version": 1,
-            "weekStart": ""
-          }
-
+            }

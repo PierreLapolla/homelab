@@ -38,7 +38,7 @@ if ! command_exists k3s; then
 
     # Graceful wait for K3s to initialize resources
     echo "Giving K3s time to initialize resources (e.g., coredns, metrics-server)..."
-    sleep 180  # Wait for 60 seconds before checking for system pods
+    sleep 60
 else
     echo "K3s is already installed."
 fi

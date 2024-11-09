@@ -28,7 +28,6 @@ spec:
       TZ: "Europe/Paris"
     admin:
       noPassword: true
-      password: ""
     resources:
       requests:
         memory: "500Mi"
