@@ -26,7 +26,7 @@ spec:
       size: 10Gi
     pihole:
       TZ: "Europe/Paris"
-      WEBPASSWORD: "Pedro1234"
+      WEBPASSWORD: null
     resources:
       requests:
         memory: "500Mi"
