@@ -34,6 +34,10 @@ spec:
     grafana.ini:
       metrics:
         enabled: true
+      auth.anonymous:
+        enabled: true
+        org_name: Main Org.
+        org_role: Admin # Viewer, Editor, Admin
     podAnnotations:
       prometheus.io/scrape: "true"
       prometheus.io/port: "3000"
