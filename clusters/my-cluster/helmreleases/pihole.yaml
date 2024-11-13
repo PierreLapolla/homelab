@@ -31,7 +31,7 @@ spec:
       size: 10Gi
     pihole:
       TZ: "Europe/Paris"
-    adminPassword: "Pedro1234"
+      adminPassword: "Pedro1234"
     resources:
       requests:
         memory: "500Mi"

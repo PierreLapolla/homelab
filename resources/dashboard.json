@@ -55,7 +55,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 11,
         "w": 12,
         "x": 0,
         "y": 0
@@ -187,7 +187,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 11,
         "w": 12,
         "x": 12,
         "y": 0
@@ -307,10 +307,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 11,
         "w": 12,
         "x": 0,
-        "y": 7
+        "y": 11
       },
       "id": 3,
       "options": {
@@ -421,10 +421,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 11,
         "w": 12,
         "x": 12,
-        "y": 7
+        "y": 11
       },
       "id": 5,
       "options": {
@@ -471,19 +471,20 @@
     }
   ],
   "preload": false,
+  "refresh": "auto",
   "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Homelab",
   "uid": "ae3fsvsu69udcd",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
