@@ -16,6 +16,10 @@ spec:
   values:
     service:
       type: NodePort
+      ports:
+        - port: 3000
+          targetPort: 3000
+          nodePort: 30081
     resources:
       requests:
         cpu: "100m"
