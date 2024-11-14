@@ -117,4 +117,8 @@ flux bootstrap github \
 
 unset GITHUB_TOKEN
 
+# Check pods statuses
+kubectl get pods --all-namespaces
+
+# FIXME: permission denied on the following command
 ./info.sh

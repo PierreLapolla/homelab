@@ -31,7 +31,7 @@ spec:
       size: 10Gi
     pihole:
       TZ: "Europe/Paris"
-      adminPassword: "Pedro1234"
+      adminPassword: "Pedro1234" # FIXME: not working, password is still default 'admin'
     resources:
       requests:
         memory: "500Mi"
