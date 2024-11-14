@@ -16,9 +16,6 @@ spec:
   values:
     service:
       type: NodePort
-      nodePorts:
-        dns: 30092
-        http: 30093
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
