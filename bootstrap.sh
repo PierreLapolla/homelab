@@ -117,6 +117,9 @@ flux bootstrap github \
 
 unset GITHUB_TOKEN
 
+# Check flux state
+flux get kustomizations -A
+
 # Check pods statuses
 kubectl get pods --all-namespaces
 

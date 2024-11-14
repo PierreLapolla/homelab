@@ -17,6 +17,7 @@ spec:
     server:
       service:
         type: NodePort
+        nodePort: 30090
       additionalScrapeConfigs:
         - job_name: 'grafana'
           kubernetes_sd_configs:
