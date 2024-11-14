@@ -11,7 +11,7 @@ spec:
       version: "*"
       sourceRef:
         kind: HelmRepository
-        name: prometheus-community
+        name: prometheus
         namespace: flux-system
   values:
     server:

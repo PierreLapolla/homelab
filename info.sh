@@ -65,7 +65,6 @@ if [ -n "$PIHOLE_DHCP_PORT" ]; then
 else
   echo "Pi-hole DHCP service not found in the '$PIHOLE_NAMESPACE' namespace."
 fi
-echo "====================================================="
 
 # Verify if Home Assistant service exists
 echo "====================================================="
@@ -74,3 +73,5 @@ if [ -n "$HOMEASSISTANT_PORT" ]; then
 else
   echo "Home Assistant service not found in the '$HOMEASSISTANT_NAMESPACE' namespace."
 fi
+
+echo "====================================================="

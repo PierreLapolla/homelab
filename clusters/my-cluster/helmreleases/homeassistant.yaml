@@ -7,11 +7,11 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: home-assistant
+      chart: homeassistant
       version: "*"
       sourceRef:
         kind: HelmRepository
-        name: home-assistant
+        name: homeassistant
         namespace: flux-system
   values:
     service:
