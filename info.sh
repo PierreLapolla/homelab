@@ -20,6 +20,10 @@ PIHOLE_DNS_TCP_PORT=$(kubectl get svc -n "$PIHOLE_NAMESPACE" pihole-dns-tcp -o j
 PIHOLE_DNS_UDP_PORT=$(kubectl get svc -n "$PIHOLE_NAMESPACE" pihole-dns-udp -o jsonpath='{.spec.ports[0].nodePort}')
 PIHOLE_DHCP_PORT=$(kubectl get svc -n "$PIHOLE_NAMESPACE" pihole-dhcp -o jsonpath='{.spec.ports[0].nodePort}')
 
+# Constants for Home Assistant
+HOMEASSISTANT_NAMESPACE="homeassistant"
+HOMEASSISTANT_PORT=$(kubectl get svc -n "$HOMEASSISTANT_NAMESPACE" homeassistant -o jsonpath='{.spec.ports[0].nodePort}')
+
 # Verify if Prometheus service exists
 echo "====================================================="
 if [ -n "$PROMETHEUS_PORT" ]; then
@@ -62,3 +66,11 @@ else
   echo "Pi-hole DHCP service not found in the '$PIHOLE_NAMESPACE' namespace."
 fi
 echo "====================================================="
+
+# Verify if Home Assistant service exists
+echo "====================================================="
+if [ -n "$HOMEASSISTANT_PORT" ]; then
+  echo "Home Assistant is accessible at: http://$NODE_IP:$HOMEASSISTANT_PORT"
+else
+  echo "Home Assistant service not found in the '$HOMEASSISTANT_NAMESPACE' namespace."
+fi
