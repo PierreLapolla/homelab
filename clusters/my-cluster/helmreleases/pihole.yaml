@@ -14,8 +14,15 @@ spec:
         name: pihole
         namespace: flux-system
   values:
-    service:
+    serviceWeb:
       type: NodePort
+      nodePort: 30092
+    serviceDns:
+      type: NodePort
+      nodePort: 30093
+    serviceDhcp:
+      type: NodePort
+      nodePort: 30094
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
