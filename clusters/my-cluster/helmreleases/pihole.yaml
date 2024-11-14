@@ -16,32 +16,13 @@ spec:
   values:
     serviceWeb:
       type: NodePort
-      ports:
-        - name: metrics
-          port: 9617
-          targetPort: 9617
-          nodePort: 30091
+      nodePort: 30092
     serviceDns:
       type: NodePort
-      ports:
-        - name: dns-tcp
-          port: 53
-          protocol: TCP
-          targetPort: 53
-          nodePort: 30092
-        - name: dns-udp
-          port: 53
-          protocol: UDP
-          targetPort: 53
-          nodePort: 30092
+      nodePort: 30093
     serviceDhcp:
       type: NodePort
-      ports:
-        - name: dhcp
-          port: 67
-          protocol: UDP
-          targetPort: 67
-          nodePort: 30093
+      nodePort: 30094
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
@@ -56,6 +37,3 @@ spec:
       limits:
         memory: "1Gi"
         cpu: "500m"
-    podAnnotations:
-      prometheus.io/scrape: "true"
-      prometheus.io/port: "9617"

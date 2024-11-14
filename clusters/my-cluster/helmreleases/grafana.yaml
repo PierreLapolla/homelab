@@ -16,10 +16,7 @@ spec:
   values:
     service:
       type: NodePort
-      ports:
-        - port: 3000
-          targetPort: 3000
-          nodePort: 30081
+      nodePort: 30091
     resources:
       requests:
         cpu: "100m"
@@ -37,6 +34,3 @@ spec:
         enabled: true
         org_name: Main Org.
         org_role: Admin # Viewer, Editor, Admin
-    podAnnotations:
-      prometheus.io/scrape: "true"
-      prometheus.io/port: "3000"
